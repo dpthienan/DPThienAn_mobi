@@ -1,0 +1,32 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="160dp"
+    android:height="160dp"
+    android:viewportWidth="160"
+    android:viewportHeight="160">
+
+    <!-- Outer dark hexagon background -->
+    <path
+        android:fillColor="#1C1B1F"
+        android:pathData="M80,10 L140,45 L140,115 L80,150 L20,115 L20,45 Z" />
+
+    <!-- Blue/teal bottom piece -->
+    <path
+        android:fillColor="#00BCD4"
+        android:pathData="M80,150 L20,115 L20,80 L80,80 Z" />
+
+    <!-- Green top-right piece -->
+    <path
+        android:fillColor="#4CAF50"
+        android:pathData="M80,10 L140,45 L140,80 L80,80 Z" />
+
+    <!-- Dark center piece -->
+    <path
+        android:fillColor="#263238"
+        android:pathData="M80,80 L140,80 L140,115 L80,150 Z" />
+
+    <!-- Light blue highlight piece -->
+    <path
+        android:fillColor="#80DEEA"
+        android:pathData="M80,80 L20,80 L20,45 L80,10 Z" />
+
+</vector>
