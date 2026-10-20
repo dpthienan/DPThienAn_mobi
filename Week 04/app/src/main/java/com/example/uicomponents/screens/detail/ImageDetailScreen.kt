@@ -16,6 +16,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+import com.example.uicomponents.R
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -55,19 +58,19 @@ fun ImageDetailScreen(onBack: () -> Unit) {
         ) {
             Spacer(modifier = Modifier.height(16.dp))
 
-            // Ảnh từ URL (network)
+            // Ảnh 1: Load từ URL
             AsyncImage(
                 model = "https://giaothongvantaiphcm.edu.vn/wp-content/uploads/2025/01/Logo-GTVT.png",
                 contentDescription = "UTH Logo from URL",
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp),
-                contentScale = ContentScale.Fit
+                contentScale = ContentScale.Crop
             )
 
             Spacer(modifier = Modifier.height(8.dp))
 
-            // Hiển thị URL
+            // Hiển thị URL bên dưới ảnh 1
             Text(
                 text = "https://giaothongvantaiphcm.edu.vn/wp-content/uploads/2025/01/Logo-GTVT.png",
                 fontSize = 12.sp,
@@ -77,10 +80,10 @@ fun ImageDetailScreen(onBack: () -> Unit) {
 
             Spacer(modifier = Modifier.height(24.dp))
 
-            // Ảnh thứ 2 từ URL khác (in app demo)
-            AsyncImage(
-                model = "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e5/Ho_Chi_Minh_City_Hall.jpg/1200px-Ho_Chi_Minh_City_Hall.jpg",
-                contentDescription = "Ho Chi Minh City Hall",
+            // Ảnh 2: Ảnh local từ drawable (in app)
+            Image(
+                painter = painterResource(id = R.drawable.uth_building),
+                contentDescription = "UTH Building - In app",
                 modifier = Modifier
                     .fillMaxWidth()
                     .height(200.dp),

@@ -12,6 +12,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.uicomponents.navigation.Routes
+import androidx.compose.foundation.lazy.items
 
 data class ComponentItem(
     val name: String,
@@ -78,8 +79,12 @@ fun ComponentListScreen(onComponentClick: (String) -> Unit) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxSize()
-                .padding(innerPadding)
-                .padding(horizontal = 16.dp),
+                .padding(innerPadding),
+            contentPadding = PaddingValues(
+                start = 16.dp,
+                end = 16.dp,
+                bottom = WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding()
+            ),
             verticalArrangement = Arrangement.spacedBy(0.dp)
         ) {
             item { SectionHeader("Display") }
