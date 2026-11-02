@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "659566886823",
+    "project_id": "uthtodo-25493",
+    "storage_bucket": "uthtodo-25493.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:659566886823:android:62ce85d246edac1a2d4082",
+        "android_client_info": {
+          "package_name": "com.example.uthtodo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "659566886823-10qekfs5s2320qab5069thblsosaa9af.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.uthtodo",
+            "certificate_hash": "7ec0ba0900d6ebae7d484c97e511fb58020c37d9"
+          }
+        },
+        {
+          "client_id": "659566886823-urdudvt1gkfumfd5rsdkd3jjcgrh9u03.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBj4SEXTN-vV5IXLmQBdkkBf_cqee37nG4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "659566886823-urdudvt1gkfumfd5rsdkd3jjcgrh9u03.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
