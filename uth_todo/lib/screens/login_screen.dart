@@ -41,13 +41,22 @@ class _LoginScreenState extends State<LoginScreen> {
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Đăng nhập thất bại: $e'),
+          content: Text(_friendlySignInError(e)),
           backgroundColor: Colors.redAccent,
         ),
       );
     } finally {
       if (mounted) setState(() => _loading = false);
     }
+  }
+
+  String _friendlySignInError(Object e) {
+    final text = e.toString();
+    if (text.contains('ApiException: 10') || text.contains('sign_in_failed')) {
+      return 'Đăng nhập Google thất bại (lỗi cấu hình SHA-1). '
+          'Thêm SHA-1 debug vào Firebase Console rồi chạy lại app.';
+    }
+    return 'Đăng nhập thất bại: $e';
   }
 
   void _continueAsGuest() {

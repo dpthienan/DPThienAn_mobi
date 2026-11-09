@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../services/todo_service.dart';
+import '../services/task_api.dart';
+import '../services/task_store.dart';
 import '../theme/app_colors.dart';
 import '../widgets/add_todo_sheet.dart';
 import 'home_screen.dart';
@@ -19,46 +20,27 @@ class HomeShell extends StatefulWidget {
 
 class _HomeShellState extends State<HomeShell> {
   int _index = 0;
-  bool _seeded = false;
 
   @override
   void initState() {
     super.initState();
-    _seedIfNeeded();
-  }
-
-  Future<void> _seedIfNeeded() async {
-    if (widget.guest || _seeded) return;
-    _seeded = true;
-    try {
-      await TodoService.instance.ensureWelcomeSeed();
-    } catch (e) {
-      debugPrint('Seed todos skipped: $e');
-    }
+    TaskStore.instance.refresh();
   }
 
   Future<void> _addTodo() async {
-    if (widget.guest) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Đăng nhập Google để lưu việc lên Firestore'),
-        ),
-      );
-      return;
-    }
-
     final result = await showAddTodoSheet(context);
     if (result == null || !mounted) return;
     try {
-      await TodoService.instance.addTodo(
+      await TaskApi.instance.createTask(
         title: result.title,
         category: result.category,
         time: result.time,
       );
+      await TaskStore.instance.refresh();
       if (!mounted) return;
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
-          content: Text('Đã lưu lên Cloud Firestore'),
+          content: Text('Đã gửi POST /mock/teach/tasks'),
           backgroundColor: AppColors.green,
         ),
       );

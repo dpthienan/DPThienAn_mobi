@@ -9,7 +9,12 @@ class AuthService {
   static final AuthService instance = AuthService._();
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
-  final GoogleSignIn _googleSignIn = GoogleSignIn();
+  // Web client ID from google-services.json (client_type: 3). Required so
+  // Google Sign-In returns an idToken Firebase Auth can verify.
+  final GoogleSignIn _googleSignIn = GoogleSignIn(
+    serverClientId:
+        '659566886823-urdudvt1gkfumfd5rsdkd3jjcgrh9u03.apps.googleusercontent.com',
+  );
 
   User? get currentUser => _auth.currentUser;
 

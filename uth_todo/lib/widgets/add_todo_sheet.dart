@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../models/todo_item.dart';
 import '../theme/app_colors.dart';
 
 Future<({String title, String category, String time})?> showAddTodoSheet(
@@ -26,7 +25,7 @@ class _AddTodoSheet extends StatefulWidget {
 
 class _AddTodoSheetState extends State<_AddTodoSheet> {
   final _titleCtrl = TextEditingController();
-  String _category = TodoItem.categories.first;
+  String _category = 'study';
   TimeOfDay _time = TimeOfDay.now();
 
   @override
@@ -82,12 +81,15 @@ class _AddTodoSheetState extends State<_AddTodoSheet> {
           const SizedBox(height: 12),
           Wrap(
             spacing: 8,
-            children: TodoItem.categories.map((c) {
-              final selected = c == _category;
+            children: const [
+              (id: 'study', label: 'Học tập'),
+              (id: 'life', label: 'Cuộc sống'),
+            ].map((c) {
+              final selected = c.id == _category;
               return ChoiceChip(
-                label: Text(c),
+                label: Text(c.label),
                 selected: selected,
-                onSelected: (_) => setState(() => _category = c),
+                onSelected: (_) => setState(() => _category = c.id),
                 selectedColor: AppColors.purpleSoft,
                 labelStyle: TextStyle(
                   color: selected ? AppColors.purple : AppColors.muted,
@@ -130,7 +132,7 @@ class _AddTodoSheetState extends State<_AddTodoSheet> {
                 ),
               ),
               child: const Text(
-                'Lưu vào Firestore',
+                'Gửi lên API',
                 style: TextStyle(fontWeight: FontWeight.w700),
               ),
             ),
