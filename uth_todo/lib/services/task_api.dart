@@ -50,21 +50,25 @@ class TaskApi {
     required String title,
     required String category,
     required String time,
+    String? note,
+    String? date,
+    String priority = 'medium',
+    bool remind = false,
   }) async {
     final today = DateTime.now();
-    final date =
+    final defaultDate =
         '${today.year.toString().padLeft(4, '0')}-${today.month.toString().padLeft(2, '0')}-${today.day.toString().padLeft(2, '0')}';
     final res = await http.post(
       Uri.parse(_base),
       headers: _headers,
       body: jsonEncode({
         'title': title,
-        'note': '',
+        'note': note ?? '',
         'category': category,
-        'date': date,
+        'date': date ?? defaultDate,
         'time': time,
-        'priority': 'medium',
-        'remind': false,
+        'priority': priority,
+        'remind': remind,
         'done': false,
         'subtasks': <Map<String, dynamic>>[],
       }),

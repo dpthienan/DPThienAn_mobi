@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../services/task_api.dart';
 import '../services/task_store.dart';
 import '../theme/app_colors.dart';
-import '../widgets/add_todo_sheet.dart';
+import 'add_task_screen.dart';
 import 'home_screen.dart';
 import 'notifications_screen.dart';
 import 'profile_screen.dart';
@@ -28,31 +27,16 @@ class _HomeShellState extends State<HomeShell> {
   }
 
   Future<void> _addTodo() async {
-    final result = await showAddTodoSheet(context);
-    if (result == null || !mounted) return;
-    try {
-      await TaskApi.instance.createTask(
-        title: result.title,
-        category: result.category,
-        time: result.time,
-      );
-      await TaskStore.instance.refresh();
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(
-          content: Text('Đã gửi POST /mock/teach/tasks'),
-          backgroundColor: AppColors.green,
-        ),
-      );
-    } catch (e) {
-      if (!mounted) return;
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(
-          content: Text('Không lưu được: $e'),
-          backgroundColor: Colors.redAccent,
-        ),
-      );
-    }
+    final created = await Navigator.of(context).push(
+      MaterialPageRoute(builder: (_) => const AddTaskScreen()),
+    );
+    if (created == null || !mounted) return;
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(
+        content: Text('Đã thêm việc mới'),
+        backgroundColor: AppColors.green,
+      ),
+    );
   }
 
   @override
